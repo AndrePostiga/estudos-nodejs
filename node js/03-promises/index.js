@@ -25,7 +25,7 @@ function obterTelefone(idUsuario){
         setTimeout(() => {
             return resolve({
                 telefone: '1190265495',
-                ddd: 11
+                ddd: 21
             })
         }, 2000)
     })
@@ -62,20 +62,24 @@ function obterEndereco(idUsuario, callback){
 const usuarioPromisse = obterUsuario()
 usuarioPromisse
 .then( resultado => {
-    return obterTelefone(resultado.id)
-    .then( function resolverTelefone(result) {
+    return obterTelefone(resultado.id).then( function resolverTelefone(result) {
         return Object.assign(resultado, {contato : result })
     })
 })
 .then( function resultadoAnterior (resultado) {
-    return obterEnderecoAsync(resultado.id)
-    .then( function resolver(result) {
+    return obterEnderecoAsync(resultado.id).then( function resolver(result) {
         return Object.assign(resultado, {endereco : result})
     })
 })  
 .then( resultado => {
     console.log(resultado)
+    console.log(`
+        Nome: ${resultado.nome}
+        Endereço: ${resultado.endereco.rua}, ${resultado.endereco.numero}
+        Telefone: (${resultado.contato.ddd}) ${resultado.contato.telefone}
+    `)
 })
 .catch( (erro) => {
     console.error('Deu ruim', erro)
 })
+.then( )
