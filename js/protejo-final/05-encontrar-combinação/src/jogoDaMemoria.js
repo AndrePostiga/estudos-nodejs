@@ -66,6 +66,23 @@ class JogoDaMemoria {
         const item = { id, nome }
         //verificar quantidade de selecionados
         const cartasSelecionadasContador = this.cartasSelecionadas.length
+        switch (cartasSelecionadasContador) {
+            case 0:
+                //Caso nao tenha nenhum selecionado eu adiciono ele na lista
+                this.cartasSelecionadas.push(item)
+                break;
+            case 1:
+                const [ opcao1 ] = this.cartasSelecionadas //já temos um guardado, logo o user pode escolher mais um, e nós vamos pegar o primeiro item da lista
+                this.cartasSelecionadas = [] //zerar itens do array pra nao selecionar mais de dois
+                // verificar se o nome e id sao iguais
+                //verificamos se sao ids diferentes para o usuario nao clicar duas vezes na msm carta
+                if (opcao1.nome === item.nome && opcao1.id !== item.id) {
+                    alert('Combinaçao correta', item.nome)
+                    return
+                }
+                alert('Combinaçao incorreta!!!')
+                break;
+        }
     }
 
     jogar() {
