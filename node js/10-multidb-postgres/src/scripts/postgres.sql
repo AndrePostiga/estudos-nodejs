@@ -12,3 +12,16 @@ VALUES
     ('Flash', 'Velocidade'),
     ('Aquaman', 'Falar com os animais'),
     ('Batman', 'Dinheiro')
+
+----
+SELECT * FROM TB_HEROIS;
+SELECT * FROM TB_HEROIS WHERE NOME = 'Flash';
+
+--update
+UPDATE TB_HEROIS
+SET NOME='Goku', PODER='Deus'
+WHERE ID = 1
+
+--delete
+DELETE FROM TB_HEROIS
+WHERE ID = 2;
